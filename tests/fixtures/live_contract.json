@@ -1,0 +1,90 @@
+{
+  "_meta": {
+    "source": "live capture from an authenticated <PRIVATE_ACCOUNT_NUMBER_b90765981cdba8db> web session",
+    "captured_at": "2026-10-17",
+    "page_build": "runtime~client-entry.4f889a96.js",
+    "signer": "window.byted_acrawler.frontierSign({url}) -> X-Bogus (16 chars, random per call)",
+    "note": "Only key names and value types are recorded. No cookie, token or signature value is stored here."
+  },
+  "responses": {
+    "feed_tab": {
+      "http": 200,
+      "top_level": ["aweme_list", "has_more", "log_pb", "status_code"],
+      "list_key": "aweme_list",
+      "pagination": "no cursor field; stream-style (has_more only)",
+      "item_keys": ["aweme_id", "desc", "create_time", "author", "statistics", "video", "aweme_type", "aweme_control"],
+      "author_keys": ["uid", "sec_uid", "nickname", "unique_id", "signature", "avatar_thumb", "follow_status"],
+      "statistics_keys": ["digg_count", "comment_count", "share_count", "collect_count", "play_count", "download_count", "forward_count", "recommend_count"],
+      "video_keys": ["duration", "ratio", "cover", "play_addr", "bit_rate", "download_addr", "dynamic_cover"]
+    },
+    "video_detail": {
+      "http": 200,
+      "top_level": ["aweme_detail", "log_pb", "status_code"],
+      "object_key": "aweme_detail"
+    },
+    "video_comments": {
+      "http": 200,
+      "top_level": ["status_code", "comments", "cursor", "has_more", "total", "extra", "log_pb", "reply_style"],
+      "list_key": "comments",
+      "pagination": "cursor is an integer offset (observed 5 after count=5), total observed 573",
+      "item_keys": ["cid", "text", "create_time", "digg_count", "reply_comment_total", "user"]
+    },
+    "user_profile": {
+      "http": 200,
+      "top_level": ["user", "status_code", "status_msg", "extra", "log_pb"],
+      "object_key": "user"
+    },
+    "user_posts": {
+      "http": 200,
+      "top_level": ["status_code", "aweme_list", "max_cursor", "min_cursor", "has_more", "time_list", "request_item_cursor"],
+      "list_key": "aweme_list",
+      "pagination": "max_cursor is a ms timestamp; min_cursor stays 0. NOT the cursor field.",
+      "observed": {"max_cursor": 1791594000000, "min_cursor": 0, "has_more": 1, "items": 13}
+    },
+    "search_general": {
+      "http": 200,
+      "top_level": ["status_code", "data", "cursor", "has_more", "qc", "extra", "log_pb", "guide_search_words"],
+      "list_key": "data",
+      "pagination": "cursor is an integer offset",
+      "observed": {"items": 10, "status_code": 0}
+    },
+    "user_following": {
+      "http": 200,
+      "top_level": ["followings", "status_code", "status_msg", "log_pb"],
+      "list_key": "followings",
+      "note": "privacy-restricted accounts answer status_code 2096 with an empty list"
+    },
+    "user_followers": {
+      "http": 200,
+      "top_level": ["followers", "status_code", "status_msg", "log_pb"],
+      "list_key": "followers",
+      "note": "privacy-restricted accounts answer status_code 2096 with an empty list"
+    },
+    "hot_search": {
+      "http": 200,
+      "top_level": ["data", "status_code", "log_pb"],
+      "list_key": "data.word_list",
+      "requires_auth": false,
+      "observed": {"items": 51}
+    }
+  },
+  "status_codes": {
+    "0": "success",
+    "5": "missing required parameter",
+    "8": "not logged in / token invalid",
+    "2096": "hidden by the target user's privacy settings",
+    "2154": "login required",
+    "10232": "login expired"
+  },
+  "path_corrections": {
+    "user.following": "/aweme/v1/web/user/following/list/",
+    "user.followers": "/aweme/v1/web/user/follower/list/",
+    "wrong_guesses_404": [
+      "/aweme/v1/web/relation/following/list/",
+      "/aweme/v1/web/relation/follower/list/",
+      "/aweme/v1/web/im/relation/following/list/",
+      "/aweme/v1/web/relation/follow/list/",
+      "/aweme/v1/web/relation/fans/list/"
+    ]
+  }
+}

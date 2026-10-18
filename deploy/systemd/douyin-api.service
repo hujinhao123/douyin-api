@@ -1,0 +1,23 @@
+[Unit]
+Description=douyin-api private self-hosted service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=douyin-api
+Group=douyin-api
+WorkingDirectory=/opt/douyin-api/current
+EnvironmentFile=/opt/douyin-api/run/douyin-api.env
+ExecStart=/opt/douyin-api/current/.venv/bin/python -m uvicorn douyin_api.server:create_app --factory --host 127.0.0.1 --port 8787
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/douyin-api/data
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

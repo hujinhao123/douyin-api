@@ -1,0 +1,22 @@
+services:
+  douyin-api:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: douyin-api:private
+    container_name: douyin-api
+    ports:
+      - "127.0.0.1:8787:8787"
+    volumes:
+      - douyin-data:/data
+    env_file:
+      - ../.env
+    environment:
+      DOUYIN_API_DATA: /data
+      DOUYIN_HOST: 0.0.0.0
+      DOUYIN_PORT: "8787"
+      DOUYIN_HEADLESS: "true"
+    restart: unless-stopped
+    shm_size: "1gb"
+volumes:
+  douyin-data:

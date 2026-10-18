@@ -1,0 +1,17 @@
+services:
+  douyin-api:
+    build: .
+    image: douyin-api:0.1.0
+    container_name: douyin-api
+    ports:
+      # Loopback-only by default. Change to "8787:8787" only if you intend to
+      # expose it on the LAN, and then set DOUYIN_IMPORT_TOKEN as well.
+      - "127.0.0.1:8787:8787"
+    volumes:
+      - ./data:/data
+    environment:
+      DOUYIN_API_DATA: /data
+      DOUYIN_HEADLESS: "true"
+      # DOUYIN_IMPORT_TOKEN: change-me
+    restart: unless-stopped
+    shm_size: "1gb"

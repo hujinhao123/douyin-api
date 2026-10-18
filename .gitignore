@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+data/
+browser-profile/
+session.bin
+*.cookie
+.env
+evidence/*.png
+tests/fixtures/*.live.json
+dist/
+build/
+*.egg-info/
