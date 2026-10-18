@@ -15,8 +15,9 @@ services:
       DOUYIN_API_DATA: /data
       DOUYIN_HOST: 0.0.0.0
       DOUYIN_PORT: "8787"
-      DOUYIN_HEADLESS: "true"
+      DOUYIN_HEADLESS: "true"`n      DOUYIN_MASTER_KEY_FILE: /data/master.key
     restart: unless-stopped
     shm_size: "1gb"
 volumes:
   douyin-data:
+
