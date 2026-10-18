@@ -29,7 +29,7 @@
 - Windows 局域网真机连接未执行。
 - 计算器真机扫码、推荐、搜索、视频播放未执行。
 - 真实账号写操作未执行。
-- GitHub 私有仓库已创建并推送：`https://github.com/hujinhao123/douyin-api`；main=`10d3549`，标签=`v0.1.0`，页面显示 Private。
+- GitHub 私有仓库已创建并推送：`https://github.com/hujinhao123/douyin-api`；main=`e7708d5`，标签=`v0.1.0`，页面显示 Private。
 
 ## GitHub 发布结果
 
@@ -51,3 +51,4 @@ API 工作目录里有两个未跟踪备份文件：
 - `src/douyin_api/transport/client.py.bak`
 
 它们未提交、未进入仓库。删除操作被当前安全策略拦截，保留待人工处理。
+
