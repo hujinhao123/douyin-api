@@ -29,9 +29,9 @@
 - Windows 局域网真机连接未执行。
 - 计算器真机扫码、推荐、搜索、视频播放未执行。
 - 真实账号写操作未执行。
-- GitHub 私有仓库未创建、未推送：本机无 `gh`、无 `GITHUB_TOKEN`，`hujinhao123/douyin-api` 当前不存在。
+- GitHub 私有仓库已创建并推送：`https://github.com/hujinhao123/douyin-api`；main=`10d3549`，标签=`v0.1.0`，页面显示 Private。
 
-## 阻塞与下一步
+## GitHub 发布结果
 
 GitHub 发布需要一个空的私有仓库 `douyin-api`，或可用的 GitHub Token。创建后执行：
 
