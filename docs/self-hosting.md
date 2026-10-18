@@ -100,7 +100,23 @@ http://<电脑局域网IP>:8787
 Authorization: Bearer <DOUYIN_API_TOKEN>
 ```
 
-## 5. 数据备份
+## 5. 视频播放票据
+
+计算器先通过 Bearer Token 请求：
+
+```http
+POST /api/video/<id>/stream-ticket
+```
+
+再打开：
+
+```text
+GET /api/video/<id>/stream?ticket=<ticket>
+```
+
+票据只对对应视频有效、默认 5 分钟且一次使用。不要把 `DOUYIN_API_TOKEN` 直接放进播放器 URL。
+
+## 6. 数据备份
 
 需要备份：
 
@@ -110,9 +126,10 @@ Authorization: Bearer <DOUYIN_API_TOKEN>
 
 `session.bin` 离开 `master.key` 不能解密。两者必须一起备份，但不要放入 Git。
 
-## 6. 未验证边界
+## 7. 未验证边界
 
 - 未在真实 Linux 服务器完成公网 HTTPS 端到端验证时，不得声明“生产已通过”。
 - 未在真实抖音账号执行写操作。
 - 未在词典笔真机验证时，不得声明计算器端完成。
 - 抖音页面、签名入口或接口路径变化时，按 `docs/recovery.md` 排查。
+

@@ -96,3 +96,19 @@ src/douyin_api/
 - 用户作品分页用 `max_cursor`（毫秒时间戳），不是 `cursor`。
 - 关注/粉丝路径是 `/aweme/v1/web/user/following/list/`，不是 `/relation/...`。
 - `status_code: 2096` 是对方隐私设置，不是登录失效。
+
+## 安全与客户端调用
+
+除 `/health`、`/openapi.json`、`/docs`、`/redoc` 外，所有接口必须带：
+
+```http
+Authorization: Bearer <DOUYIN_API_TOKEN>
+```
+
+视频播放先调用 `POST /api/video/{id}/stream-ticket`，再使用返回的一次性短期票据：
+
+```text
+GET /api/video/{id}/stream?ticket=<ticket>
+```
+
+不要把长期 API Token 放进视频 URL。Linux 部署必须配置 `DOUYIN_MASTER_KEY_FILE`，会话使用 AES-GCM 加密；Windows 继续使用 DPAPI。详细步骤见 `docs/self-hosting.md`。
