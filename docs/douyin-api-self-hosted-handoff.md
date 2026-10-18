@@ -10,7 +10,7 @@
 - 视频流短期一次性票据：`POST /api/video/{id}/stream-ticket`，不把长期 Token 放进 URL。
 - Docker Compose、Nginx HTTPS、systemd 模板。
 - 计算器设置页新增“抖音 API”配置卡片。
-- 计算器删除硬编码 `192.168.1.246:8787`，改为设备本地 `Dbase` 配置。
+- 计算器删除硬编码 `http://<LAN_HOST>:8787`，改为设备本地 `Dbase` 配置。
 - 计算器已构建 AMR：`loli/ui/8001687764241342.1_17_09.amr`，SHA-256 `a061e8af54f58c71857a82edddcb0ab3e8cf9a9d0e8392f22e56768ce4482f37`。
 
 ## 验证证据
@@ -51,4 +51,3 @@ API 工作目录里有两个未跟踪备份文件：
 - `src/douyin_api/transport/client.py.bak`
 
 它们未提交、未进入仓库。删除操作被当前安全策略拦截，保留待人工处理。
-

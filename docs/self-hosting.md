@@ -69,7 +69,7 @@ curl http://127.0.0.1:8787/health
 
 ```powershell
 cd D:\Codex\Projects\douyin-api
-py -3 -m venv .venv
+python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 $env:PLAYWRIGHT_BROWSERS_PATH = 'D:\Codex\Caches\ms-playwright'
 .\.venv\Scripts\python.exe -m playwright install chromium
@@ -83,10 +83,11 @@ $env:DOUYIN_HOST = '0.0.0.0'
 $env:DOUYIN_ALLOW_LAN = 'true'
 $env:DOUYIN_API_TOKEN = '<随机长Token>'
 $env:DOUYIN_MASTER_KEY_FILE = 'D:\Codex\Caches\douyin-api\data\master.key'
+$env:PYTHONPATH = (Resolve-Path .\src).Path
 .\.venv\Scripts\python.exe -m uvicorn douyin_api.server:create_app --factory --host 0.0.0.0 --port 8787
 ```
 
-Windows 防火墙只允许指定私网网段访问 8787。计算器设置页填写：
+如果 `python -m venv` 报错说缺少 venv 模块，可安装 `virtualenv` 后改用 `python -m virtualenv .venv`。`DOUYIN_API_DATA` 和 `DOUYIN_MASTER_KEY_FILE` 指向同一数据目录。`DOUYIN_API_TOKEN` 必须至少 32 字符，并与计算器设置页填写的 Token 完全一致。Windows 防火墙只允许指定私网网段访问 8787。计算器设置页填写：
 
 ```text
 http://<电脑局域网IP>:8787
@@ -132,4 +133,3 @@ GET /api/video/<id>/stream?ticket=<ticket>
 - 未在真实抖音账号执行写操作。
 - 未在词典笔真机验证时，不得声明计算器端完成。
 - 抖音页面、签名入口或接口路径变化时，按 `docs/recovery.md` 排查。
-
