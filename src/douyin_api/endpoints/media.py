@@ -125,6 +125,15 @@ async def video_media(request: Request, video_id: str) -> dict:
     return {"media": extract_media(detail)}
 
 
+@router.post("/{video_id}/stream-ticket")
+async def video_stream_ticket(request: Request, video_id: str) -> dict:
+    deps = request.app.state.deps
+    require_active(deps.session_store)
+    store = getattr(request.app.state, "stream_tickets", None)
+    if store is None:
+        raise HTTPException(status_code=503, detail={"code": "STREAM_TICKET_UNAVAILABLE"})
+    return {"ticket": store.issue(video_id), "expires_in": 300}
+
 @router.get("/{video_id}/stream")
 async def video_stream(request: Request, video_id: str) -> StreamingResponse:
     """Local Range-capable relay for device playback.
@@ -164,3 +173,4 @@ async def video_stream(request: Request, video_id: str) -> StreamingResponse:
         headers=response_headers,
         media_type=response_headers.get("content-type", "video/mp4"),
     )
+

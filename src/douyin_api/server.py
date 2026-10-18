@@ -39,7 +39,7 @@ from douyin_api.endpoints import (
 from douyin_api.errors import DouyinApiError
 from douyin_api.redaction import RedactingFilter
 from douyin_api.storage.secrets import default_protector
-from douyin_api.security import install_auth_middleware
+from douyin_api.security import StreamTicketStore, install_auth_middleware
 from douyin_api.transport.browser import BrowserTransport
 from douyin_api.transport.client import DouyinClient
 
@@ -217,6 +217,7 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 
 
 
